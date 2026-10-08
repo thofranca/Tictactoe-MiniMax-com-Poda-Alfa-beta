@@ -48,7 +48,11 @@ def terminal(state):
             return 'X'
         elif state[i].count('O') == 3:
             return 'O'
-        vaz = vaz + state[i].count(' ')
+        vaz += state[i].count(' ')
+        
+        if state[0][i] == state[1][i] == state[2][i] and state[0][i] != ' ':
+            return state[0][i]
+            
     if state[0][0] == state[1][1] and state[1][1] == state[2][2] and state[2][2] != " ":
         return state[0][0]
     if state[0][2] == state[1][1] and state[2][0] == state[1][1] and state[2][0] != " ":
