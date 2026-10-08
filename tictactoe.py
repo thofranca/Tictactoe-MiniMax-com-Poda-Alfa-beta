@@ -27,6 +27,11 @@ def terminal(state):
     return False
 
 def utility(state):
-    pass
+    if terminal(state) == 'X':
+        return 1
+    elif terminal(state) == 'O':
+        return -1
+    elif terminal(state) == 'Empate':
+        return 0
 
 print(terminal(cerquilha))
