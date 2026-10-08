@@ -1,12 +1,18 @@
 from tictactoe import *
 from minimax import *
 from random_player import *
+from alphabet import *
+import random
+
+random.seed(1985)
+
 print("Bem vindo ao jogo da velha!\n")
 opcoes = ["X", "O"]
 tipo = input("Escolha se você (ou o random_player) será X ou O: ")
 player = opcoes.pop(opcoes.index(tipo))
 vez = "X"
 random = True
+usa_alfabeta = True
 empate = 0
 x = 0
 o = 0 
@@ -30,7 +36,10 @@ for i in range(100):
             vez = opcoes[0]
             printcerquilha(cerquilha)
         else:
-            posic = minimax(cerquilha, vez)
+            if usa_alfabeta:
+                posic = alphabeta(cerquilha, vez)
+            else:
+                posic = minimax(cerquilha, vez)
             cerquilha[posic[0]][posic[1]] = vez
             vez = player
             printcerquilha(cerquilha)
@@ -53,3 +62,4 @@ print(f"\nResultados após 100 partidas:")
 print(f"Vitórias do X: {x}")
 print(f"Vitórias do O: {o}")
 print(f"Empates: {empate}")
+print(f"Estados expandidos pelo agente: {minimax.estados_expandidos}")
